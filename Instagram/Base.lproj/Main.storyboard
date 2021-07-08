@@ -260,10 +260,10 @@
             </objects>
             <point key="canvasLocation" x="3203.0769230769229" y="74.644549763033169"/>
         </scene>
-        <!--View Controller-->
+        <!--Edit View Controller-->
         <scene sceneID="SNZ-Ge-o4u">
             <objects>
-                <viewController modalPresentationStyle="fullScreen" id="JiX-Lu-RHc" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="JiX-Lu-RHc" customClass="EditViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qiX-QI-9Pp">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -282,6 +282,9 @@
                                 <rect key="frame" x="123" y="237" width="145" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Change Profile Photo"/>
+                                <connections>
+                                    <action selector="changePicPress:" destination="JiX-Lu-RHc" eventType="touchUpInside" id="YUF-HL-7QF"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aBa-9h-G5s">
                                 <rect key="frame" x="16" y="289" width="47" height="21"/>
@@ -340,6 +343,12 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="RkZ-Lh-KdM"/>
+                    <connections>
+                        <outlet property="nameText" destination="cTO-yj-0zq" id="mwX-E5-deS"/>
+                        <outlet property="profileImage" destination="iQA-32-5up" id="sga-62-gFg"/>
+                        <outlet property="pronounsText" destination="8yG-Pd-e4Q" id="l34-ra-Gr8"/>
+                        <outlet property="usernameText" destination="tii-uG-OWY" id="cXG-gb-2xb"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Leq-IG-aes" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
