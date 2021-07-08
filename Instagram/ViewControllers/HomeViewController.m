@@ -51,6 +51,7 @@
     [cell.postImage loadInBackground];
     PFUser *user = post[@"author"];
     cell.usernameLabel.text = user.username;
+    cell.usernameLabelTop.text = user.username;
     return cell;
 }
 - (void) refresh{
