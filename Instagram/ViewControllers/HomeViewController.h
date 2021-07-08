@@ -10,7 +10,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface HomeViewController : UIViewController
-
+@property (strong, nonatomic) NSArray *posts;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -37,8 +37,8 @@
             } else {
                 NSLog(@"User registered successfully");
                 UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-                SignupViewController *HomeNavigationController = [storyboard instantiateViewControllerWithIdentifier:@"HomeNavigationController"];
-                [self presentViewController:HomeNavigationController animated:YES completion:^{
+                SignupViewController *TabBarController = [storyboard instantiateViewControllerWithIdentifier:@"TabBarController"];
+                [self presentViewController:TabBarController animated:YES completion:^{
                 }];
             }
         }];

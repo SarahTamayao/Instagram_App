@@ -8,6 +8,9 @@
 #import "ComposeViewController.h"
 #import "Post.h"
 #import <Parse/Parse.h>
+#import "HomeViewController.h"
+#import <UITextView_Placeholder/UITextView+Placeholder.h>
+#import "LoginViewController.h"
 
 @interface ComposeViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
@@ -17,8 +20,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.captionLabel.placeholder = @"Write a caption ...";
+    self.captionLabel.placeholderColor = [UIColor lightGrayColor];
     // Do any additional setup after loading the view.
 }
+
+- (IBAction)cancelPress:(id)sender {
+}
+
 - (IBAction)picturePress:(id)sender {
     UIImagePickerController *imagePickerVC = [UIImagePickerController new];
     imagePickerVC.delegate = self;
@@ -36,33 +45,34 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
     
     // Get the image captured by the UIImagePickerController
-    UIImage *originalImage = info[UIImagePickerControllerOriginalImage];
     UIImage *editedImage = info[UIImagePickerControllerEditedImage];
-
-    // Do something with the images (based on your use case)
-    PFObject *post = [[PFObject alloc] initWithClassName:@"Post"];
-    PFFileObject *imageFile = [PFFileObject fileObjectWithName:@"image.png" data:UIImagePNGRepresentation(editedImage)];
-    post[@"image"] = imageFile;
-    [post saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error){
-        if (succeeded){
-            NSLog(@"the object has been saved");
-        }else{
-            NSLog(@"%@", error.localizedDescription);
-        }
-    }];
+    self.postImage = editedImage;
+    [self.addButton setImage: self.postImage forState: UIControlStateNormal];
+//    [Post postUserImage:editedImage withCaption:self.captionLabel.text
+//         withCompletion:^(BOOL succeeded, NSError * error) {}];
     
     // Dismiss UIImagePickerController to go back to your original view controller
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-/*
+- (IBAction)postPressed:(id)sender {
+    [Post postUserImage:self.postImage withCaption:self.captionLabel.text
+             withCompletion:^(BOOL succeeded, NSError * error) {}];
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    LoginViewController *TabBarController = [storyboard instantiateViewControllerWithIdentifier:@"TabBarController"];
+    [self presentViewController:TabBarController animated:YES completion:^{
+    }];
+}
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    UINavigationController  *navigationController = [segue destinationViewController];
+    HomeViewController  *homeController = (HomeViewController*)navigationController.topViewController;
 }
-*/
+
 
 @end

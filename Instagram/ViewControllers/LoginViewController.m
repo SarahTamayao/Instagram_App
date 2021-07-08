@@ -32,8 +32,8 @@
             } else {
                 NSLog(@"User logged in successfully");
                 UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-                LoginViewController *HomeNavigationController = [storyboard instantiateViewControllerWithIdentifier:@"HomeNavigationController"];
-                [self presentViewController:HomeNavigationController animated:YES completion:^{
+                LoginViewController *TabBarController = [storyboard instantiateViewControllerWithIdentifier:@"TabBarController"];
+                [self presentViewController:TabBarController animated:YES completion:^{
                 }];
                 // display view controller that needs to shown after successful login
             }

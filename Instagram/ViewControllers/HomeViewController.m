@@ -10,11 +10,11 @@
 #import "LoginViewController.h"
 #import "PostCell.h"
 #import "Post.h"
+#import "SVProgressHUD.h"
 
 @interface HomeViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) NSArray *posts;
-
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
 @end
 
 @implementation HomeViewController
@@ -23,8 +23,12 @@
     [super viewDidLoad];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(refresh) userInfo:nil repeats:true];
-    // Do any additional setup after loading the view.
+    [self refresh];
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(refresh) forControlEvents:UIControlEventValueChanged];
+    [self.tableView insertSubview:self.refreshControl atIndex: 0];
 }
 - (IBAction)logoutPress:(id)sender {
     [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
@@ -42,24 +46,27 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     PostCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PostCell" forIndexPath:indexPath];
     Post *post = self.posts[indexPath.row];
-    //cell.captionLabel.text =
-//    [cell.postImage setImage:post.image];
+    cell.captionLabel.text = post[@"caption"];
+    cell.postImage.file = post [@"image"];
+    [cell.postImage loadInBackground];
+    PFUser *user = post[@"author"];
+    cell.usernameLabel.text = user.username;
     return cell;
 }
-
 - (void) refresh{
     // construct query
     PFQuery *query = [PFQuery queryWithClassName:@"Post"];
+    [query includeKey:@"author"];
 //    [query whereKey:@"likesCount" greaterThan:@100];
     query.limit = 20;
 
-    // fetch data asynchronously
+    // fetch data asynchronouslyirgbljljbirihegdgjfchvbvdnlvtcvf
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil) {
             self.posts = posts;
-            NSLog(@"able to fetch posts");
-            NSLog(@"%lu", (unsigned long)posts.count);
+            NSLog(@"%lu", self.posts.count);
             [self.tableView reloadData];
+            [self.refreshControl endRefreshing];
         } else {
             NSLog(@"%@", error.localizedDescription);
         }
