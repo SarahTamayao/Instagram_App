@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		490FF6CE26974D9B00F49A2E /* EditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 490FF6CD26974D9B00F49A2E /* EditViewController.m */; };
 		490FF6D126974FCA00F49A2E /* ComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 490FF6D026974FCA00F49A2E /* ComposeViewController.m */; };
+		490FF6D426977D3900F49A2E /* DetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 490FF6D326977D3900F49A2E /* DetailsViewController.m */; };
+		4966F2352697B67E007AD0C7 /* profileImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4966F2342697B67E007AD0C7 /* profileImage.m */; };
 		497C53B82694DFDB00AC7B6B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 497C53B72694DFDB00AC7B6B /* AppDelegate.m */; };
 		497C53BB2694DFDB00AC7B6B /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 497C53BA2694DFDB00AC7B6B /* SceneDelegate.m */; };
 		497C53C12694DFDB00AC7B6B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 497C53BF2694DFDB00AC7B6B /* Main.storyboard */; };
@@ -58,6 +60,10 @@
 		490FF6CD26974D9B00F49A2E /* EditViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditViewController.m; sourceTree = "<group>"; };
 		490FF6CF26974FCA00F49A2E /* ComposeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComposeViewController.h; sourceTree = "<group>"; };
 		490FF6D026974FCA00F49A2E /* ComposeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComposeViewController.m; sourceTree = "<group>"; };
+		490FF6D226977D3900F49A2E /* DetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailsViewController.h; sourceTree = "<group>"; };
+		490FF6D326977D3900F49A2E /* DetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailsViewController.m; sourceTree = "<group>"; };
+		4966F2342697B67E007AD0C7 /* profileImage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = profileImage.m; sourceTree = "<group>"; };
+		4966F2362697B690007AD0C7 /* profileImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = profileImage.h; sourceTree = "<group>"; };
 		497C53B32694DFDB00AC7B6B /* Instagram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Instagram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		497C53B62694DFDB00AC7B6B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		497C53B72694DFDB00AC7B6B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -201,6 +207,8 @@
 				490FF6CD26974D9B00F49A2E /* EditViewController.m */,
 				490FF6CF26974FCA00F49A2E /* ComposeViewController.h */,
 				490FF6D026974FCA00F49A2E /* ComposeViewController.m */,
+				490FF6D226977D3900F49A2E /* DetailsViewController.h */,
+				490FF6D326977D3900F49A2E /* DetailsViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -214,6 +222,8 @@
 				497C54002696179F00AC7B6B /* Post.h */,
 				497C54072696BB9C00AC7B6B /* PostCollectionCell.h */,
 				497C54082696BB9C00AC7B6B /* PostCollectionCell.m */,
+				4966F2342697B67E007AD0C7 /* profileImage.m */,
+				4966F2362697B690007AD0C7 /* profileImage.h */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -483,6 +493,7 @@
 				497C53C92694DFDD00AC7B6B /* main.m in Sources */,
 				497C54092696BB9C00AC7B6B /* PostCollectionCell.m in Sources */,
 				497C54062696BA0100AC7B6B /* GridViewController.m in Sources */,
+				4966F2352697B67E007AD0C7 /* profileImage.m in Sources */,
 				490FF6CE26974D9B00F49A2E /* EditViewController.m in Sources */,
 				497C54032696B9BC00AC7B6B /* PostsCollectionViewController.m in Sources */,
 				497C53BB2694DFDB00AC7B6B /* SceneDelegate.m in Sources */,
@@ -490,6 +501,7 @@
 				497C53FF2696177700AC7B6B /* Post.m in Sources */,
 				497C53F426951ACF00AC7B6B /* PostCell.m in Sources */,
 				490FF6D126974FCA00F49A2E /* ComposeViewController.m in Sources */,
+				490FF6D426977D3900F49A2E /* DetailsViewController.m in Sources */,
 				497C53FA26951D3200AC7B6B /* SignupViewController.m in Sources */,
 				497C53F726951B3800AC7B6B /* HomeViewController.m in Sources */,
 			);
