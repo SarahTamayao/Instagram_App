@@ -25,12 +25,13 @@
     [super viewDidLoad];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    [self refresh];
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(refresh) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:self.refreshControl atIndex: 0];
+    
+    [self refresh];
 }
 - (IBAction)logoutPress:(id)sender {
     [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
@@ -49,23 +50,16 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     PostCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PostCell" forIndexPath:indexPath];
     Post *post = self.posts[indexPath.row];
-    if(self.profiles.count != 0){
+    [cell checkLike:post];
+    cell.post = post;
+    PFUser *user = post[@"author"];
+    if(self.profiles.count != 0 && [user.username isEqualToString:PFUser.currentUser.username]){
         profileImage *profile = self.profiles[self.profiles.count - 1];
         cell.profileImage.file = profile [@"image"];
         [cell.profileImage loadInBackground];
-        if(profile.username != nil && ![profile.username isEqual: @""]){
-            cell.usernameLabel.text = profile.username;
-            cell.usernameLabelTop.text = profile.username;
-        }else{
-            PFUser *user = post[@"author"];
-            cell.usernameLabel.text = user.username;
-            cell.usernameLabelTop.text = user.username;
-        }
-    }else{
-        PFUser *user = post[@"author"];
-        cell.usernameLabel.text = user.username;
-        cell.usernameLabelTop.text = user.username;
     }
+    cell.usernameLabel.text = user.username;
+    cell.usernameLabelTop.text = user.username;
     cell.captionLabel.text = post[@"caption"];
     cell.postImage.file = post [@"image"];
     [cell.postImage loadInBackground];
@@ -77,10 +71,11 @@
     PFQuery *queryProfile = [PFQuery queryWithClassName:@"profileImage"];
     [query includeKey:@"author"];
     [query includeKey:@"createdAt"];
+    [queryProfile whereKey:@"author" equalTo:PFUser.currentUser.username];
 //    [query whereKey:@"likesCount" greaterThan:@100];
     query.limit = 20;
 
-    // fetch data asynchronouslyirgbljljbirihegdgjfchvbvdnlvtcvf
+    // fetch data asynchronously
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil) {
             self.posts = posts;
@@ -102,19 +97,24 @@
         }
     }];
 }
-
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-    UITableViewCell *tappedCell = sender;
-    NSIndexPath *indexPath = [self.tableView indexPathForCell:tappedCell];
-    Post *post = self.posts[indexPath.row];
-    
-    DetailsViewController *detailsViewController = [segue destinationViewController];
-    detailsViewController.post = post;
+    if([segue.identifier isEqualToString:@"DetailsSegue"]){
+        UITableViewCell *tappedCell = sender;
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:tappedCell];
+        Post *post = self.posts[indexPath.row];
+        DetailsViewController *detailsViewController = [segue destinationViewController];
+        detailsViewController.post = post;
+        
+        if(self.profiles.count != 0){
+            profileImage *profile = self.profiles[self.profiles.count - 1];
+            detailsViewController.profile = profile;
+        }
+    }
 }
 
 

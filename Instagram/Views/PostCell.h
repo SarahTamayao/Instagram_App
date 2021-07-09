@@ -20,6 +20,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabelTop;
 @property (weak, nonatomic) IBOutlet PFImageView *profileImage;
 @property (strong, nonatomic) IBOutlet PFImageView *postImage;
+@property (strong, nonatomic) Post *post;
+-(void) checkLike:(Post *)post;
 @end
 
 NS_ASSUME_NONNULL_END

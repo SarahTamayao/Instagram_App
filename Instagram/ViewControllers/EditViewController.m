@@ -48,7 +48,7 @@
 }
 
 - (IBAction)saveChangesPressed:(id)sender {
-    [profileImage profileUserImage:self.profileImageHolder withName:self.nameText.text withUsername:self.usernameText.text withPronouns:self.pronounsText.text withBio:self.bioText.text withCompletion:^(BOOL succeeded, NSError *error){}];
+    [profileImage profileUserImage:self.profileImageHolder withName:self.nameText.text withPronouns:self.pronounsText.text withBio:self.bioText.text withCompletion:^(BOOL succeeded, NSError *error){}];
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     GridViewController *TabBarController = [storyboard instantiateViewControllerWithIdentifier:@"TabBarController"];
     [self presentViewController:TabBarController animated:YES completion:^{

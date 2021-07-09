@@ -12,7 +12,6 @@ NS_ASSUME_NONNULL_BEGIN
 @interface EditViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UIImageView *profileImage;
 @property (weak, nonatomic) IBOutlet UITextField *nameText;
-@property (weak, nonatomic) IBOutlet UITextField *usernameText;
 @property (weak, nonatomic) IBOutlet UITextField *pronounsText;
 @property (weak, nonatomic) IBOutlet UITextField *bioText;
 @property (strong, nonatomic) UIImage *profileImageHolder;

@@ -11,7 +11,6 @@
 #import "Post.h"
 #import "profileImage.h"
 #import "EditViewController.h"
-
 @interface GridViewController ()<UICollectionViewDataSource, UICollectionViewDelegate>
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (strong, nonatomic) NSArray *posts;
@@ -28,8 +27,8 @@
     
     UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout *)self.collectionView.collectionViewLayout;
 
-    layout.minimumInteritemSpacing = 1;
-    layout.minimumLineSpacing = 1;
+    layout.minimumInteritemSpacing = 2;
+    layout.minimumLineSpacing = 2;
 
     CGFloat postsPerLine = 3;
     CGFloat itemWidth = (self.collectionView.frame.size.width - layout.minimumInteritemSpacing * (postsPerLine - 1))/postsPerLine;
@@ -43,22 +42,8 @@
     Post *post = self.posts[indexPath.row];
     cell.postImage.file = post [@"image"];
     [cell.postImage loadInBackground];
-    
-    if(self.profiles.count != 0){
-        profileImage *profile = self.profiles[self.profiles.count - 1];
-        if(profile.username != nil && ![profile.username isEqual: @""]){
-            self.profileUsername.text = [@"@" stringByAppendingString:(profile.username)];
-        }else{
-            PFUser *user = post[@"author"];
-            self.profileUsername.text = [@"@" stringByAppendingString:(user.username)];
-        }
-        self.profileName.text = profile.name;
-        self.userBio.text = profile.bio;
-        self.profilePronouns.text = profile.pronouns;
-        self.profileImage.file = profile [@"image"];
-        [self.profileImage loadInBackground];
-    }
-    
+    PFUser *user = post[@"author"];
+    self.profileUsername.text = [@"@" stringByAppendingString:(user.username)];
     
     return cell;
 }
@@ -72,10 +57,10 @@
     PFQuery *query = [PFQuery queryWithClassName:@"Post"];
     PFQuery *queryProfile = [PFQuery queryWithClassName:@"profileImage"];
     [query includeKey:@"author"];
-//    [query whereKey:@"likesCount" greaterThan:@100];
+    [query whereKey:@"author" equalTo:PFUser.currentUser];
     query.limit = 20;
 
-    // fetch data asynchronouslyirgbljljbirihegdgjfchvbvdnlvtcvf
+    // fetch data asynchronously
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil) {
             self.posts = posts;
@@ -89,6 +74,14 @@
         if (profiles != nil) {
             self.profiles = profiles;
             NSLog(@"%lu", self.profiles.count);
+            if(self.profiles.count != 0){
+                profileImage *profile = self.profiles[self.profiles.count - 1];
+                self.profileName.text = profile.name;
+                self.userBio.text = profile.bio;
+                self.profilePronouns.text = profile.pronouns;
+                self.profileImage.file = profile [@"image"];
+                [self.profileImage loadInBackground];
+            }
             [self.collectionView reloadData];
         } else {
             NSLog(@"%@", error.localizedDescription);

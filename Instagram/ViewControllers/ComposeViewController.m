@@ -26,6 +26,7 @@
 }
 
 - (IBAction)cancelPress:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)picturePress:(id)sender {
@@ -56,10 +57,11 @@
 - (IBAction)postPressed:(id)sender {
     [Post postUserImage:self.postImage withCaption:self.captionLabel.text
              withCompletion:^(BOOL succeeded, NSError * error) {}];
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    LoginViewController *TabBarController = [storyboard instantiateViewControllerWithIdentifier:@"TabBarController"];
-    [self presentViewController:TabBarController animated:YES completion:^{
-    }];
+//    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+//    LoginViewController *TabBarController = [storyboard instantiateViewControllerWithIdentifier:@"TabBarController"];
+//    [self presentViewController:TabBarController animated:YES completion:^{
+//    }];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - Navigation
