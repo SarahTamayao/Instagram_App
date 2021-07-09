@@ -12,16 +12,23 @@
 @implementation profileImage
 
 @dynamic image;
+@dynamic name;
+@dynamic username;
+@dynamic pronouns;
+@dynamic bio;
 
 + (nonnull NSString *)parseClassName {
     return @"profileImage";
 }
 
-+ (void)profileUserImage:(UIImage *)image withCompletion:(PFBooleanResultBlock)completion{
++ (void) profileUserImage: (UIImage * _Nullable)image withName: (NSString * _Nullable)name withUsername: (NSString * _Nullable)username withPronouns: (NSString * _Nullable)pronouns withBio: (NSString * _Nullable)bio withCompletion: (PFBooleanResultBlock _Nullable)completion{
     
     profileImage *newProfile = [profileImage new];
+    newProfile.name = name;
+    newProfile.username = username;
+    newProfile.pronouns = pronouns;
+    newProfile.bio = bio;
     newProfile.image = [self getPFFileFromImage:image];
-    
     [newProfile saveInBackgroundWithBlock: completion];
 }
 

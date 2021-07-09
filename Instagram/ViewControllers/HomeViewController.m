@@ -17,7 +17,6 @@
 @interface HomeViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
-@property (strong, nonatomic) UIImage *profileImage;
 @end
 
 @implementation HomeViewController
@@ -54,16 +53,22 @@
         profileImage *profile = self.profiles[self.profiles.count - 1];
         cell.profileImage.file = profile [@"image"];
         [cell.profileImage loadInBackground];
+        if(profile.username != nil && ![profile.username isEqual: @""]){
+            cell.usernameLabel.text = profile.username;
+            cell.usernameLabelTop.text = profile.username;
+        }else{
+            PFUser *user = post[@"author"];
+            cell.usernameLabel.text = user.username;
+            cell.usernameLabelTop.text = user.username;
+        }
+    }else{
+        PFUser *user = post[@"author"];
+        cell.usernameLabel.text = user.username;
+        cell.usernameLabelTop.text = user.username;
     }
     cell.captionLabel.text = post[@"caption"];
     cell.postImage.file = post [@"image"];
     [cell.postImage loadInBackground];
-    PFUser *user = post[@"author"];
-    cell.usernameLabel.text = user.username;
-    cell.usernameLabelTop.text = user.username;
-    if(self.profileImage != nil){
-        [cell.profileImage setImage:self.profileImage];
-    }
     return cell;
 }
 - (void) refresh{

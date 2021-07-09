@@ -165,7 +165,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jwy-5q-gnA">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jwy-5q-gnA" customClass="PFImageView">
                                 <rect key="frame" x="16" y="144" width="130" height="127"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -176,16 +176,9 @@
                                 </userDefinedRuntimeAttributes>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YHJ-t1-KyV">
-                                <rect key="frame" x="16" y="279" width="54" height="23"/>
+                                <rect key="frame" x="16" y="271" width="54" height="23"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="19"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Bio" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0GP-Rx-9wc">
-                                <rect key="frame" x="18" y="310" width="73" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -244,6 +237,20 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="pronouns" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y4p-Lh-YpN">
+                                <rect key="frame" x="18" y="295" width="64" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Bio" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0GP-Rx-9wc">
+                                <rect key="frame" x="18" y="321" width="73" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="sbA-Gs-h4q"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -251,8 +258,10 @@
                     <navigationItem key="navigationItem" id="HQt-2J-Qek"/>
                     <connections>
                         <outlet property="collectionView" destination="H5b-Yk-JFn" id="CyP-br-Y7q"/>
-                        <outlet property="profileImage" destination="jwy-5q-gnA" id="2lo-wo-PAh"/>
+                        <outlet property="profileImage" destination="jwy-5q-gnA" id="uml-72-QPs"/>
                         <outlet property="profileName" destination="YHJ-t1-KyV" id="gkw-jm-ru2"/>
+                        <outlet property="profilePronouns" destination="y4p-Lh-YpN" id="V71-n4-PNM"/>
+                        <outlet property="profileUsername" destination="yOD-B7-ahG" id="7iH-lS-b2n"/>
                         <outlet property="userBio" destination="0GP-Rx-9wc" id="d0S-6Y-Oag"/>
                     </connections>
                 </viewController>
@@ -268,7 +277,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iQA-32-5up">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iQA-32-5up">
                                 <rect key="frame" x="130" y="102" width="130" height="127"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -352,6 +361,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="RkZ-Lh-KdM"/>
                     <connections>
+                        <outlet property="bioText" destination="JM4-Cl-DbT" id="l1u-KK-7e0"/>
                         <outlet property="nameText" destination="cTO-yj-0zq" id="mwX-E5-deS"/>
                         <outlet property="profileImage" destination="iQA-32-5up" id="sga-62-gFg"/>
                         <outlet property="pronounsText" destination="8yG-Pd-e4Q" id="l34-ra-Gr8"/>
@@ -721,7 +731,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="PtT-JN-c9S"/>
+        <segue reference="u6j-ps-ag0"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="addButton" width="200" height="200"/>
