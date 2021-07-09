@@ -50,7 +50,7 @@ Here's a walkthrough of implemented user stories:
 
 ![](instaTwo.gif)
 
-![](instaThree.gif)
+![](instThree.gif)
 
 ![](instaFour.gif)
 
